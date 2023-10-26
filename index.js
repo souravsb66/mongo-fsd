@@ -18,9 +18,12 @@ app.get("/", (req,res) => {
     res.send({"message": "Home page"});
 })
 
+(async function () {
+    await connection;
+})()
+
 app.listen(process.env.PORT, async () => {
     try {
-        await connection;
         console.log("Connected to DB");
         console.log(`listening on port ${process.env.PORT}`);
     }
