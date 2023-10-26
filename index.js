@@ -18,13 +18,18 @@ app.get("/", (req,res) => {
     res.send({"message": "Home page"});
 })
 
-(async function () {
-    await connection;
-})()
+try {
+    (async function () {
+        await connection;
+    })()
+    console.log("Connected to DB");
+}
+catch(err) {
+    console.log(err);
+}
 
 app.listen(process.env.PORT, async () => {
     try {
-        console.log("Connected to DB");
         console.log(`listening on port ${process.env.PORT}`);
     }
     catch(err) {
